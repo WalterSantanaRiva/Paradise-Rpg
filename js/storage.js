@@ -122,6 +122,36 @@ function carregar(){
         dados.foto;
 
     }
+    const fotoSalva =
+localStorage.getItem(
+    "fotoPersonagem"
+);
+
+if(fotoSalva){
+
+    const foto =
+    document.getElementById("foto");
+
+    if(foto){
+
+        foto.src =
+        fotoSalva;
+
+    }
+
+    const fotoCurriculo =
+    document.getElementById(
+        "fotoCurriculo"
+    );
+
+    if(fotoCurriculo){
+
+        fotoCurriculo.src =
+        fotoSalva;
+
+    }
+
+}
 
     atualizarBarras();
 
