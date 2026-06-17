@@ -231,14 +231,16 @@
 }
 
 .adesivo{
-
     position:absolute;
 
-    width:80px;
+    max-width:150px;
+    max-height:150px;
 
     cursor:grab;
 
-    z-index:999;
+    user-select:none;
+
+    -webkit-user-drag:none;
 
     pointer-events:auto;
         z-index:20;
