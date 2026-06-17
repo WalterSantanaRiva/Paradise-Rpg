@@ -17,17 +17,37 @@
 </head>
 
 <body>
+    <div id="marcaSistema">
 
+    LaplaceIterprize Entertainments©
+    in partnership with Paradise
+
+</div>
+<div id="desktop">
     <header>
 
-        <button id="btnFicha">Ficha</button>
-        <button id="btnCurriculo">Currículo</button>
+
 
     </header>
 
     <main>
 
         <!-- FICHA -->
+         <div class="janela" id="janelaFicha">
+
+    <div class="barra-titulo">
+
+        <span>Paradise RPG - Ficha</span>
+
+        <button
+class="fechar"
+id="fecharFicha">
+
+X
+
+</button>
+
+    </div>
 
         <section id="ficha">
 
@@ -66,7 +86,7 @@ hidden>
         <span
         id="vidaMax"
         contenteditable="true">
-            60
+            50
         </span>
 
         <span onclick="alterarValor('vidaAtual',1)">+</span>
@@ -199,8 +219,24 @@ Digite as habilidades classe Z aqui...
             id="uploadFoto">
 
         </section>
+        </div>
 
         <!-- CURRÍCULO -->
+         <div class="janela" id="janelaCurriculo">
+
+    <div class="barra-titulo">
+
+        <span>Paradise RPG - Currículo</span>
+
+        <button
+class="fechar"
+id="fecharCurriculo">
+
+X
+
+</button>
+
+    </div>
 
         <section id="curriculo">
 
@@ -294,19 +330,107 @@ type="text"
 class="frase"
 ></textarea>
 
-        </section>
-
+</section>
+</div>
     </main>
+    </div>
+        <div id="taskbar">
 
+    <button id="startBtn">
+
+        Iniciar
+
+    </button>
+    <div id="tray">
+
+            <button id="btnMusicas">
+        🎵
+    </button>
+        <button id="btnPause">
+        ⏸
+    </button>
+
+    <button id="somBtn">
+        🔇
+    </button>
+
+    </div>
+    <div id="menuSom">
+
+    <input
+    type="range"
+    id="volumeSlider"
+    min="0"
+    max="100"
+    value="5">
+
+</div>
+<div id="menuMusicas">
+
+    <button
+    class="musica"
+    data-arquivo="fallout.mp3">
+
+        fallout
+
+    </button>
+
+    <button
+    class="musica"
+    data-arquivo="musica2.mp3">
+
+        Daisy
+
+    </button>
+
+    <button
+    class="musica"
+    data-arquivo="musica3.mp3">
+
+        outofherhead
+
+    </button>
+    <div id="musicaAtual">
+
+    Nenhuma música
+
+</div>
+
+</div>
+
+</div>
+
+<div id="menuIniciar">
+
+    <button id="abrirFicha">
+        📝 Ficha
+    </button>
+
+    <button id="abrirCurriculo">
+        📄 Currículo
+    </button>
+
+</div>
+<audio id="somCRT" loop>
+
+    <source
+    src="assets/sounds/crt-hum.mp3"
+    type="audio/mpeg">
+
+</audio>
+<audio id="musicaPlayer"></audio>
     <script src="js/app.js"></script>
     <script src="js/ficha.js"></script>
     <script src="js/storage.js"></script>
+    <script src="js/windows95.js"></script>
+    <div id="crt-filter"></div>
 <div id="tv-noise"></div>
 <div id="tv-scanlines"></div>
 <div id="tv-vignette"></div>
 <div id="tv-flicker"></div>
 <div id="tv-static"></div>
 <div id="rgb-glitch"></div>
+
 </body>
 
 </html>

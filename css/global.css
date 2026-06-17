@@ -4,9 +4,73 @@
     box-sizing:border-box;
 }
 
+html,
 body{
-    background:#111;
+
+    width:100%;
+    min-height:100vh;
+overflow-x:hidden;
 }
+
+body{
+
+        background-image:
+    url("../assets/backgrounds/xp.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-repeat:no-repeat;
+
+    background-attachment:fixed;
+
+    overflow-x:hidden;
+
+}
+#marcaSistema{
+
+    position:fixed;
+
+    top:10px;
+
+    left:10px;
+
+    color:white;
+
+    font-family:Tahoma;
+
+    font-size:13px;
+
+    font-style:italic;
+
+    text-shadow:
+    2px 2px 3px black;
+
+    opacity:.9;
+
+}
+#crt-filter{
+
+    position:fixed;
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:9997;
+
+    backdrop-filter:
+    contrast(1.15)
+    brightness(.95)
+    saturate(.9);
+
+}
+#desktop{
+
+    animation:crtShake 8s infinite;
+
+}
+
 
 header{
     display:flex;
@@ -20,7 +84,7 @@ button{
     cursor:pointer;
 }
 
-#curriculo{
+#janelaCurriculo{
     display:none;
 }
 /* CAMADA DE RUÍDO */
@@ -120,12 +184,7 @@ button{
     }
 
 }
-body{
 
-    animation:
-    crtShake 8s infinite;
-
-}
 @keyframes crtShake{
 
     0%{
@@ -284,14 +343,7 @@ body::after{
     }
 
 }
-body{
 
-    filter:
-    contrast(1.15)
-    brightness(.95)
-    saturate(.9);
-
-}
 #rgb-glitch{
 
     position:fixed;
@@ -329,5 +381,209 @@ body{
     100%{
         transform:translateX(0);
     }
+
+}
+#taskbar{
+
+    position:fixed;
+
+    bottom:0;
+
+    left:0;
+
+    width:100%;
+
+    height:40px;
+
+    background:#c0c0c0;
+
+    border-top:2px solid white;
+
+    display:flex;
+z-index:999999;
+    align-items:center;
+
+}
+#startBtn{
+
+    height:30px;
+
+    margin-left:4px;
+
+    padding:0 12px;
+
+    background:#c0c0c0;
+
+    border-top:2px solid white;
+
+    border-left:2px solid white;
+
+    border-right:2px solid #444;
+
+    border-bottom:2px solid #444;
+
+    font-weight:bold;
+
+}
+.janela{
+
+    position:absolute;
+
+    left:50%;
+    top:60px;
+
+    transform:translateX(-50%);
+
+    background:#c0c0c0;
+
+    border-top:2px solid white;
+    border-left:2px solid white;
+
+    border-right:2px solid #444;
+    border-bottom:2px solid #444;
+
+    padding:4px;
+
+}
+.barra-titulo{
+
+    height:28px;
+
+    background:#000080;
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 8px;
+
+    font-weight:bold;
+
+}
+.fechar{
+
+    width:22px;
+    height:22px;
+
+    padding:0;
+
+}
+#menuIniciar{
+
+    position:fixed;
+
+    left:0;
+    bottom:40px;
+
+    width:220px;
+
+    background:#c0c0c0;
+
+    border-top:2px solid white;
+    border-left:2px solid white;
+
+    border-right:2px solid #444;
+    border-bottom:2px solid #444;
+
+    padding:4px;
+
+    display:none;
+
+    z-index:999998;
+
+}
+#menuIniciar button{
+
+    display:block;
+
+    width:100%;
+
+    text-align:left;
+
+    margin-bottom:4px;
+
+    background:#c0c0c0;
+
+    border-top:2px solid white;
+    border-left:2px solid white;
+
+    border-right:2px solid #444;
+    border-bottom:2px solid #444;
+
+}
+.barra-titulo{
+
+    cursor:move;
+
+}
+#tray{
+
+    margin-left:auto;
+
+    margin-right:10px;
+
+    display:flex;
+
+    align-items:center;
+
+}
+
+#somBtn{
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    user-select:none;
+
+}
+#menuSom{
+
+    position:fixed;
+
+    right:10px;
+    bottom:45px;
+
+    width:150px;
+
+    padding:10px;
+
+    background:#c0c0c0;
+
+    border-top:2px solid white;
+    border-left:2px solid white;
+
+    border-right:2px solid #444;
+    border-bottom:2px solid #444;
+
+    display:none;
+
+    z-index:999999;
+
+}
+#menuMusicas{
+
+    position:fixed;
+
+    right:180px;
+    bottom:40px;
+
+    width:250px;
+
+    background:#c0c0c0;
+
+    border-top:2px solid white;
+    border-left:2px solid white;
+
+    border-right:2px solid #444;
+    border-bottom:2px solid #444;
+
+    display:none;
+
+    z-index:999999;
 
 }

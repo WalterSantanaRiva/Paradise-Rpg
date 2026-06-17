@@ -157,6 +157,7 @@ if(fotoSalva){
 
 }
 
+
 document
 .addEventListener(
 "input",

@@ -8,8 +8,8 @@ document
 .getElementById("btnFicha")
 .addEventListener("click",()=>{
 
-    ficha.style.display="block";
-    curriculo.style.display="none";
+    janelaFicha.style.display = "block";
+janelaCurriculo.style.display = "none";
 
 });
 
@@ -17,7 +17,7 @@ document
 .getElementById("btnCurriculo")
 .addEventListener("click",()=>{
 
-    ficha.style.display="none";
-    curriculo.style.display="block";
+    janelaFicha.style.display="none";
+    janelaCurriculo.style.display="block";
 
 });

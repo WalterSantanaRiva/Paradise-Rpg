@@ -1,0 +1,299 @@
+const startBtn =
+document.getElementById("startBtn");
+
+const menu =
+document.getElementById("menuIniciar");
+
+startBtn.addEventListener("click",()=>{
+
+    if(menu.style.display === "block"){
+
+        menu.style.display = "none";
+
+    }else{
+
+        menu.style.display = "block";
+
+    }
+
+});
+document
+.getElementById("abrirFicha")
+.addEventListener("click",()=>{
+
+    document
+    .getElementById("janelaFicha")
+    .style.display = "block";
+
+    menu.style.display =
+    "none";
+
+});
+document
+.getElementById("abrirCurriculo")
+.addEventListener("click",()=>{
+
+    document
+    .getElementById("janelaCurriculo")
+    .style.display = "block";
+
+    menu.style.display =
+    "none";
+
+});
+document
+.getElementById("fecharFicha")
+.addEventListener("click",()=>{
+
+    document
+    .getElementById("janelaFicha")
+    .style.display =
+    "none";
+
+});
+document
+.getElementById("fecharCurriculo")
+.addEventListener("click",()=>{
+
+    document
+    .getElementById("janelaCurriculo")
+    .style.display =
+    "none";
+
+});
+tornarArrastavel("janelaFicha");
+tornarArrastavel("janelaCurriculo");
+
+function tornarArrastavel(id){
+
+    const janela =
+    document.getElementById(id);
+
+    const barra =
+    janela.querySelector(
+        ".barra-titulo"
+    );
+
+    let arrastando =
+    false;
+
+    let offsetX = 0;
+    let offsetY = 0;
+
+    barra.addEventListener(
+        "mousedown",
+        (e)=>{
+
+            arrastando = true;
+
+            const rect =
+            janela.getBoundingClientRect();
+
+            offsetX =
+            e.clientX - rect.left;
+
+            offsetY =
+            e.clientY - rect.top;
+
+        }
+    );
+
+    document.addEventListener(
+        "mousemove",
+        (e)=>{
+
+            if(!arrastando)
+                return;
+
+            janela.style.left =
+            (e.clientX - offsetX)
+            +"px";
+
+            janela.style.top =
+            (e.clientY - offsetY)
+            +"px";
+
+            janela.style.transform =
+            "none";
+
+        }
+    );
+
+    document.addEventListener(
+        "mouseup",
+        ()=>{
+
+            arrastando =
+            false;
+
+        }
+    );
+
+}
+const somBtn =
+document.getElementById(
+    "somBtn"
+);
+
+const somCRT =
+document.getElementById(
+    "somCRT"
+);
+
+let somLigado = false;
+
+somBtn.addEventListener(
+    "click",
+    ()=>{
+
+        if(!somLigado){
+
+            somCRT.volume = 0.05;
+
+            somCRT.play();
+
+            somBtn.innerText =
+            "🔊";
+
+            somLigado = true;
+
+        }else{
+
+            somCRT.pause();
+
+            somBtn.innerText =
+            "🔇";
+
+            somLigado = false;
+
+        }
+
+    }
+);
+somBtn.addEventListener(
+    "click",
+    ()=>{
+
+        const menu =
+        document.getElementById(
+            "menuSom"
+        );
+
+        menu.style.display =
+        menu.style.display === "block"
+        ? "none"
+        : "block";
+
+    }
+);
+const slider =
+document.getElementById(
+    "volumeSlider"
+);
+
+
+
+slider.addEventListener(
+    "input",
+    ()=>{
+
+        player.volume =
+        slider.value / 100;
+
+    }
+);
+const btnMusicas =
+document.getElementById(
+    "btnMusicas"
+);
+btnMusicas.addEventListener(
+    "click",
+    ()=>{
+
+        const menu =
+        document.getElementById(
+            "menuMusicas"
+        );
+
+        menu.style.display =
+        menu.style.display === "block"
+        ? "none"
+        : "block";
+
+    }
+);
+const player =
+document.getElementById(
+    "musicaPlayer"
+);
+
+document
+.querySelectorAll(".musica")
+.forEach(btn=>{
+
+    btn.addEventListener(
+        "click",
+        ()=>{
+
+            player.src =
+            "assets/sounds/" +
+            btn.dataset.arquivo;
+
+            player.play();
+
+        }
+    );
+
+});
+const btnPause =
+document.getElementById(
+    "btnPause"
+);
+
+btnPause.addEventListener(
+    "click",
+    ()=>{
+
+        if(player.paused){
+
+            player.play();
+
+            btnPause.innerText =
+            "⏸";
+
+        }else{
+
+            player.pause();
+
+            btnPause.innerText =
+            "▶";
+
+        }
+
+    }
+);
+document
+.querySelectorAll(".musica")
+.forEach(btn=>{
+
+    btn.addEventListener(
+        "click",
+        ()=>{
+
+            player.src =
+            "assets/sounds/" +
+            btn.dataset.arquivo;
+
+            player.play();
+
+            document
+            .getElementById(
+                "musicaAtual"
+            )
+            .innerText =
+            btn.innerText;
+
+        }
+    );
+
+});
