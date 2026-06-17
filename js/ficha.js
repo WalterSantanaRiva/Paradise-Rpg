@@ -179,6 +179,27 @@ function criarAdesivo(src,x,y){
     document.createElement("img");
 
     img.src = src;
+    img.onload = () => {
+
+    const maxLargura = 150;
+    const maxAltura = 150;
+
+    let largura = img.naturalWidth;
+    let altura = img.naturalHeight;
+
+    const escala = Math.min(
+        maxLargura / largura,
+        maxAltura / altura,
+        1
+    );
+
+    img.style.width =
+    (largura * escala) + "px";
+
+    img.style.height =
+    (altura * escala) + "px";
+
+};
 
     img.classList.add(
         "adesivo"
