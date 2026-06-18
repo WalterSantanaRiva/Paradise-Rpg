@@ -243,7 +243,7 @@
     -webkit-user-drag:none;
 
     pointer-events:auto;
-        z-index:20;
+        z-index:999;
           
 }
 #btnNovoAdesivo{
@@ -361,6 +361,7 @@
 
     z-index:100;
 }
+
 .icone-adesivo:hover{
 
     transform:scale(1.1);

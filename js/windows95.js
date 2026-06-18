@@ -61,10 +61,10 @@ document
     "none";
 
 });
-tornarArrastavel("janelaFicha");
-tornarArrastavel("janelaCurriculo");
+tornarJanelaArrastavel("janelaFicha");
+tornarJanelaArrastavel("janelaCurriculo");
 
-function tornarArrastavel(id){
+function tornarJanelaArrastavel(id){
 
     const janela =
     document.getElementById(id);
@@ -79,7 +79,54 @@ function tornarArrastavel(id){
 
     let offsetX = 0;
     let offsetY = 0;
+barra.addEventListener(
+    "touchstart",
+    (e)=>{
 
+        arrastando = true;
+
+        const toque =
+        e.touches[0];
+
+        const rect =
+        janela.getBoundingClientRect();
+
+        offsetX =
+        toque.clientX - rect.left;
+
+        offsetY =
+        toque.clientY - rect.top;
+
+    }
+);
+document.addEventListener(
+    "touchmove",
+    (e)=>{
+
+        if(!arrastando)
+            return;
+
+        const toque =
+        e.touches[0];
+
+        janela.style.left =
+        (toque.clientX - offsetX)
+        +"px";
+
+        janela.style.top =
+        (toque.clientY - offsetY)
+        +"px";
+
+    }
+);
+document.addEventListener(
+    "touchend",
+    ()=>{
+
+        arrastando = false;
+
+    }
+);
     barra.addEventListener(
         "mousedown",
         (e)=>{
@@ -292,6 +339,49 @@ document
             )
             .innerText =
             btn.innerText;
+
+        }
+    );
+
+});
+document
+.getElementById("iconeJogos")
+.addEventListener(
+    "dblclick",
+    ()=>{
+
+        document
+        .getElementById("janelaJogos")
+        .style.display =
+        "block";
+
+    }
+);
+document
+.getElementById("fecharJogos")
+.addEventListener(
+    "click",
+    ()=>{
+
+        document
+        .getElementById("janelaJogos")
+        .style.display =
+        "none";
+
+    }
+);
+document
+.querySelectorAll(".jogo")
+.forEach(jogo=>{
+
+    jogo.addEventListener(
+        "dblclick",
+        ()=>{
+
+            window.open(
+                jogo.dataset.link,
+                "_blank"
+            );
 
         }
     );

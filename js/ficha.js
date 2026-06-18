@@ -231,13 +231,85 @@ document
 
 });
 }
+let segurando;
+
+img.addEventListener(
+    "touchstart",
+    ()=>{
+
+        segurando =
+        setTimeout(()=>{
+
+            if(confirm(
+                "Excluir adesivo?"
+            )){
+
+                img.remove();
+
+                salvarAdesivos();
+
+            }
+
+        },1000);
+
+    }
+);
 function tornarArrastavel(el){
+
 
     let segurando =
     false;
 
     let offsetX = 0;
     let offsetY = 0;
+    barra.addEventListener(
+    "touchstart",
+    (e)=>{
+
+        arrastando = true;
+
+        const toque =
+        e.touches[0];
+
+        const rect =
+        janela.getBoundingClientRect();
+
+        offsetX =
+        toque.clientX - rect.left;
+
+        offsetY =
+        toque.clientY - rect.top;
+
+    }
+);
+document.addEventListener(
+    "touchmove",
+    (e)=>{
+
+        if(!arrastando)
+            return;
+
+        const toque =
+        e.touches[0];
+
+        janela.style.left =
+        (toque.clientX - offsetX)
+        +"px";
+
+        janela.style.top =
+        (toque.clientY - offsetY)
+        +"px";
+
+    }
+);
+document.addEventListener(
+    "touchend",
+    ()=>{
+
+        arrastando = false;
+
+    }
+);
 
     el.addEventListener(
     "mousedown",
