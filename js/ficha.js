@@ -219,34 +219,44 @@ document
     tornarArrastavel(img);
 
     salvarAdesivos();
-    img.addEventListener("dblclick",()=>{
 
-    if(confirm("Excluir adesivo?")){
-
-        img.remove();
-
-        salvarAdesivos();
-
-    }
-
-});
+    
 }
-let segurando;
 
-img.addEventListener(
-    "touchstart",
-    ()=>{
+function tornarArrastavel(el){
 
-        segurando =
+    let segurando = false;
+
+    let offsetX = 0;
+    let offsetY = 0;
+
+    let timerExcluir;
+    let movendo = false;
+
+   el.addEventListener(
+    "mousedown",
+    (e)=>{
+
+        segurando = true;
+        movendo = false;
+
+        offsetX = e.offsetX;
+        offsetY = e.offsetY;
+
+        timerExcluir =
         setTimeout(()=>{
 
-            if(confirm(
-                "Excluir adesivo?"
-            )){
+            if(!movendo){
 
-                img.remove();
+                if(confirm(
+                    "Excluir adesivo?"
+                )){
 
-                salvarAdesivos();
+                    el.remove();
+
+                    salvarAdesivos();
+
+                }
 
             }
 
@@ -254,76 +264,6 @@ img.addEventListener(
 
     }
 );
-function tornarArrastavel(el){
-
-
-    let segurando =
-    false;
-
-    let offsetX = 0;
-    let offsetY = 0;
-    barra.addEventListener(
-    "touchstart",
-    (e)=>{
-
-        arrastando = true;
-
-        const toque =
-        e.touches[0];
-
-        const rect =
-        janela.getBoundingClientRect();
-
-        offsetX =
-        toque.clientX - rect.left;
-
-        offsetY =
-        toque.clientY - rect.top;
-
-    }
-);
-document.addEventListener(
-    "touchmove",
-    (e)=>{
-
-        if(!arrastando)
-            return;
-
-        const toque =
-        e.touches[0];
-
-        janela.style.left =
-        (toque.clientX - offsetX)
-        +"px";
-
-        janela.style.top =
-        (toque.clientY - offsetY)
-        +"px";
-
-    }
-);
-document.addEventListener(
-    "touchend",
-    ()=>{
-
-        arrastando = false;
-
-    }
-);
-
-    el.addEventListener(
-    "mousedown",
-    (e)=>{
-
-        segurando=true;
-
-        offsetX =
-        e.offsetX;
-
-        offsetY =
-        e.offsetY;
-
-    });
 
     document.addEventListener(
     "mousemove",
@@ -331,26 +271,27 @@ document.addEventListener(
 
         if(!segurando)
             return;
+if(!movendo){
 
+    movendo = true;
+
+    clearTimeout(
+        timerExcluir
+    );
+
+}
         const ficha =
-        document
-        .getElementById(
-            "ficha"
-        );
+        document.getElementById("ficha");
 
         const rect =
         ficha.getBoundingClientRect();
 
         el.style.left =
-        (e.clientX
-        - rect.left
-        - offsetX)
+        (e.clientX - rect.left - offsetX)
         +"px";
 
         el.style.top =
-        (e.clientY
-        - rect.top
-        - offsetY)
+        (e.clientY - rect.top - offsetY)
         +"px";
 
     });
@@ -359,15 +300,118 @@ document.addEventListener(
     "mouseup",
     ()=>{
 
+        clearTimeout(
+            timerExcluir
+        );
+
         if(segurando){
 
             salvarAdesivos();
 
         }
 
-        segurando=false;
+        segurando = false;
+
+    }
+);
+   el.addEventListener(
+    "touchstart",
+    (e)=>{
+
+        segurando = true;
+        movendo = false;
+
+        const toque =
+        e.touches[0];
+
+        const rect =
+        el.getBoundingClientRect();
+
+        offsetX =
+        toque.clientX - rect.left;
+
+        offsetY =
+        toque.clientY - rect.top;
+
+        timerExcluir =
+        setTimeout(()=>{
+
+            if(!movendo){
+
+                if(confirm(
+                    "Excluir adesivo?"
+                )){
+
+                    el.remove();
+
+                    salvarAdesivos();
+
+                }
+
+            }
+
+        },1000);
+
+    }
+);
+
+    document.addEventListener(
+    "touchmove",
+    (e)=>{
+
+        if(!segurando)
+            return;
+        if(!movendo){
+
+    movendo = true;
+
+    clearTimeout(
+        timerExcluir
+    );
+
+}
+
+        const toque =
+        e.touches[0];
+
+        const ficha =
+        document.getElementById("ficha");
+
+        const rectFicha =
+        ficha.getBoundingClientRect();
+
+        el.style.left =
+        (toque.clientX
+        - rectFicha.left
+        - offsetX)
+        +"px";
+
+        el.style.top =
+        (toque.clientY
+        - rectFicha.top
+        - offsetY)
+        +"px";
 
     });
+
+    document.addEventListener(
+    "touchend",
+    ()=>{
+
+        clearTimeout(
+            timerExcluir
+        );
+
+        if(segurando){
+
+            salvarAdesivos();
+
+        }
+
+        segurando = false;
+
+    }
+);
 
 }
 function salvarAdesivos(){

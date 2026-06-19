@@ -347,7 +347,7 @@ document
 document
 .getElementById("iconeJogos")
 .addEventListener(
-    "dblclick",
+    "click",
     ()=>{
 
         document
@@ -370,12 +370,48 @@ document
 
     }
 );
+let zoom = 1;
+
+function aplicarZoom(){
+
+    const desktop =
+    document.getElementById("desktop");
+
+    document.body.style.zoom = zoom;
+
+
+    desktop.style.transformOrigin =
+    "top left";
+
+}
+document
+.getElementById("zoomMais")
+.addEventListener("click",()=>{
+
+    zoom += 0.1;
+
+    aplicarZoom();
+
+});
+
+document
+.getElementById("zoomMenos")
+.addEventListener("click",()=>{
+
+    zoom -= 0.1;
+
+    if(zoom < 0.4)
+        zoom = 0.4;
+
+    aplicarZoom();
+
+});
 document
 .querySelectorAll(".jogo")
 .forEach(jogo=>{
 
     jogo.addEventListener(
-        "dblclick",
+        "click",
         ()=>{
 
             window.open(
